@@ -1,0 +1,1 @@
+include ':QuickCodingGeneric', ':quickcoding02', ':mylocationlogger01', ':mylocationlogger02'

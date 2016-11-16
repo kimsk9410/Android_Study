@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android_study.iml" filepath="$PROJECT_DIR$/Android_study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuickCodingGeneric/QuickCodingGeneric.iml" filepath="$PROJECT_DIR$/QuickCodingGeneric/QuickCodingGeneric.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylocationlogger01/mylocationlogger01.iml" filepath="$PROJECT_DIR$/mylocationlogger01/mylocationlogger01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylocationlogger02/mylocationlogger02.iml" filepath="$PROJECT_DIR$/mylocationlogger02/mylocationlogger02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quickcoding02/quickcoding02.iml" filepath="$PROJECT_DIR$/quickcoding02/quickcoding02.iml" />
+    </modules>
+  </component>
+</project>

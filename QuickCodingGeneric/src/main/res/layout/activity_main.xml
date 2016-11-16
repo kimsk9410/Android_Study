@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.lsn94.android_study.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="숫자나 문자열을 입력하세요."
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:id="@+id/editText" />
+
+    <Button
+        android:text="입력"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText"
+        android:layout_toEndOf="@+id/editText"
+        android:id="@+id/enterbutton" />
+
+    <Button
+        android:text="입력완료"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enterbutton"
+        android:layout_alignParentStart="true"
+        android:id="@+id/endbutton" />
+
+    <TextView
+        android:text="입력된 문자 : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/endbutton"
+        android:layout_alignParentStart="true"
+        android:id="@+id/strtext"
+        />
+
+    <TextView
+        android:text="입력된 숫자 : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/strtext"
+        android:layout_alignParentStart="true"
+        android:id="@+id/inttext"
+        />
+
+    <Button
+        android:text="초기화"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/endbutton"
+        android:layout_toEndOf="@+id/endbutton"
+        android:id="@+id/resetbutton" />
+</RelativeLayout>
