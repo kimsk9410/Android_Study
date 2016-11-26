@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/mylocationlogger01/mylocationlogger01.iml" filepath="$PROJECT_DIR$/mylocationlogger01/mylocationlogger01.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylocationlogger02/mylocationlogger02.iml" filepath="$PROJECT_DIR$/mylocationlogger02/mylocationlogger02.iml" />
       <module fileurl="file://$PROJECT_DIR$/quickcoding02/quickcoding02.iml" filepath="$PROJECT_DIR$/quickcoding02/quickcoding02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quickcodingpedometer/quickcodingpedometer.iml" filepath="$PROJECT_DIR$/quickcodingpedometer/quickcodingpedometer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/termproject/termproject.iml" filepath="$PROJECT_DIR$/termproject/termproject.iml" />
     </modules>
   </component>
 </project>

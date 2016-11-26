@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/mylocationlogger01" />
             <option value="$PROJECT_DIR$/mylocationlogger02" />
             <option value="$PROJECT_DIR$/quickcoding02" />
+            <option value="$PROJECT_DIR$/quickcodingpedometer" />
+            <option value="$PROJECT_DIR$/termproject" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
