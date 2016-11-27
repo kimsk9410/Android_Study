@@ -12,7 +12,7 @@
         android:background="#11555555"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:id="@+id/log_date">
+        android:id="@+id/datell">
 
         <Spinner
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/log_date"
+        android:layout_below="@+id/datell"
         android:layout_centerHorizontal="true"
         android:padding="20dp">
 
