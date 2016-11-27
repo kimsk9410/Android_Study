@@ -78,12 +78,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9" />
-
-            <TextView
-                android:text="메모"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView8" />
         </LinearLayout>
     </TableRow>
 </RelativeLayout>
