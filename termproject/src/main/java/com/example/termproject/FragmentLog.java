@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 public class FragmentLog extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        return inflater.inflate(R.layout.log, container, false);
+        View v = inflater.inflate(R.layout.log, container, false);
+
+        return v;
     }
 }
