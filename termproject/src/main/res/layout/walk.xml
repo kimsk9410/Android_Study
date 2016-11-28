@@ -74,26 +74,37 @@
             android:layout_width="194dp"
             android:layout_height="match_parent">
 
+            <TextView
+                android:text="1111 걸음"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView13"
+                android:textSize="30dp"
+                android:layout_below="@+id/imageView11"
+                android:layout_centerHorizontal="true" />
+
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 map:srcCompat="@drawable/walk"
                 android:id="@+id/imageView11"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:text="1111걸음"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView13"
-                android:layout_below="@+id/imageView11"
-                android:layout_alignEnd="@+id/imageView11" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="194dp"
             android:layout_height="match_parent">
+
+            <TextView
+                android:text="1111 칼로리"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView14"
+                android:layout_below="@+id/imageView12"
+                android:layout_centerHorizontal="true"
+                android:textSize="30dp"/>
 
             <ImageView
                 android:layout_width="50dp"
@@ -101,15 +112,8 @@
                 map:srcCompat="@drawable/walk"
                 android:id="@+id/imageView12"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
-
-            <TextView
-                android:text="1111칼로리"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView14"
-                android:layout_below="@+id/imageView12"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp" />
         </RelativeLayout>
     </LinearLayout>
 
