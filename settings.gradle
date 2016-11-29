@@ -1,1 +1,1 @@
-include ':QuickCodingGeneric', ':quickcoding02', ':mylocationlogger01', ':mylocationlogger02', ':quickcodingpedometer', ':termproject'
+include ':QuickCodingGeneric', ':quickcoding02', ':mylocationlogger01', ':mylocationlogger02', ':quickcodingpedometer', ':termproject', ':touchcoding'
