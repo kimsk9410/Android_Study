@@ -23,7 +23,7 @@
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDIlKLOdXLBiT9WIsbGUlRuHYaIAEJcPjI" />
 
-        <activity android:name=".MainActivity" android:label="@string/title_activity_main">
+        <activity android:name=".MainActivity" android:label="MyLifeLogger">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
