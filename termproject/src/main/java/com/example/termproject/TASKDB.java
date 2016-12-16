@@ -12,16 +12,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.data.Entry;
-import com.google.android.gms.maps.model.LatLng;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.StringTokenizer;
 
 /**
@@ -30,7 +25,7 @@ import java.util.StringTokenizer;
 
 public class TASKDB {
 
-    private DBHelper helper;
+    private TASKDBHelper helper;
     String dbName = "taskdb.db";
     int dbVersion = 1; // 데이터베이스 버전
     private SQLiteDatabase db;
@@ -38,7 +33,7 @@ public class TASKDB {
     Context mContext;
 
     TASKDB(Context mContext){
-        helper = new DBHelper(mContext, dbName, null, dbVersion);
+        helper = new TASKDBHelper(mContext, dbName, null, dbVersion);
         this.mContext = mContext;
 
         try{

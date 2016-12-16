@@ -1,26 +1,15 @@
 package com.example.termproject;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Paint;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.data.Entry;
-import com.google.android.gms.maps.model.LatLng;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.StringTokenizer;
 
 /**
@@ -29,7 +18,7 @@ import java.util.StringTokenizer;
 
 public class MEMODB {
 
-    private MemoDBHelper helper;
+    private MEMODBHelper helper;
     String dbName = "memodb.db";
     int dbVersion = 1; // 데이터베이스 버전
     private SQLiteDatabase db;
@@ -37,7 +26,7 @@ public class MEMODB {
     Context mContext;
 
     MEMODB(Context mContext){
-        helper = new MemoDBHelper(mContext, dbName, null, dbVersion);
+        helper = new MEMODBHelper(mContext, dbName, null, dbVersion);
         this.mContext = mContext;
 
         try{

@@ -30,6 +30,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -48,6 +51,7 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
     String str_starttime, str_endtime;
     int int_runtime;
     int planday=0, plancount=0, plantime=0;
+    double start_lati, start_longi, end_lati, end_longi;
     final String[] task_arr = {"걷기", "공부", "식사", "운동", "회의"};
     ArrayList<Button> al_btstart = new ArrayList<Button>();
     ArrayList<Chronometer> al_cm = new ArrayList<Chronometer>();
@@ -207,6 +211,12 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
             case R.id.start_walk:
                 int index = 0;
                 if(al_btstart.get(index).getText().equals("시작")) {
+                    new TedPermission(getActivity())
+                            .setPermissionListener(permissionlistener)
+                            .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                            .setPermissions(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                            .check();
+
                     long long_starttime = System.currentTimeMillis();
                     Date date_starttime = new Date(long_starttime);
                     SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
@@ -223,6 +233,10 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                             al_btstart.get(i).setTextColor(0xffffee00);
                         }
                     }
+
+                    UseGPS gps = new UseGPS(getContext());
+                    start_lati = gps.lati;
+                    start_longi = gps.longi;
                 }
                 else if(al_btstart.get(index).getText().equals("대기")){
                     Toast.makeText(getActivity(), "다른 작업이 진행중입니다.", Toast.LENGTH_SHORT).show();
@@ -232,12 +246,10 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                     Date date_endtime = new Date(long_endtime);
                     SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_endtime = sdf_endtime.format(date_endtime);
-                    Log.d("종료시간",str_endtime);
 
                     al_cm.get(index).stop();
                     long long_runtime = SystemClock.elapsedRealtime() - al_cm.get(index).getBase();
                     int_runtime = (int)long_runtime/1000;
-                    Log.d("런타임", Integer.toString(int_runtime));
 
                     for(int i = 0; i < al_btstart.size(); i++){
                         al_btstart.get(i).setText("시작");
@@ -245,6 +257,15 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                     }
                     TASKDB taskdb = new TASKDB(getActivity());
                     taskdb.insertTask(task_arr[index], str_starttime, str_endtime, int_runtime);
+
+                    UseGPS gps = new UseGPS(getContext());
+                    end_lati = gps.lati;
+                    end_longi = gps.longi;
+                    SimpleDateFormat sdf_walkday = new SimpleDateFormat("yyyy년MM월dd일");
+                    String str_walkday = sdf_walkday.format(date_endtime);
+
+                    GPSDB gpsdb = new GPSDB(getContext());
+                    gpsdb.insertGPS(str_walkday, start_lati, start_longi, end_lati, end_longi);
                 }
                 break;
             case R.id.start_study:
@@ -423,4 +444,15 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
         }
 
     }
+    PermissionListener permissionlistener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+            Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+            Toast.makeText(getContext(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+        }
+    };
 }
