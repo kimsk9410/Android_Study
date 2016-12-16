@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 /**
@@ -20,6 +21,7 @@ import android.widget.TextView;
 public class FragmentPlan extends Fragment implements View.OnClickListener{
 
     TextView tv_date, tv_week, tv_month;
+    TableLayout plan_tl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -31,6 +33,7 @@ public class FragmentPlan extends Fragment implements View.OnClickListener{
         tv_date.setOnClickListener(this);
         tv_week.setOnClickListener(this);
         tv_month.setOnClickListener(this);
+        plan_tl = (TableLayout)v.findViewById(R.id.plantl);
 
         return v;
     }
@@ -42,6 +45,8 @@ public class FragmentPlan extends Fragment implements View.OnClickListener{
                 tv_date.setBackgroundResource(R.drawable.roundborder_55555555_fill);
                 tv_week.setBackgroundResource(R.drawable.roundborder_55555555);
                 tv_month.setBackgroundResource(R.drawable.roundborder_55555555);
+                PLANDB plandb = new PLANDB(getActivity());
+                plandb.showPlan(plan_tl, 1);
                 break;
             case R.id.textViewweek:
                 tv_date.setBackgroundResource(R.drawable.roundborder_55555555);

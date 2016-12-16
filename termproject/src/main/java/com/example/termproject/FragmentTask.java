@@ -197,6 +197,8 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                             public void onClick(DialogInterface dialog, int which) {
                                 plancount = Integer.parseInt(et1.getText().toString());
                                 plantime = Integer.parseInt(et2.getText().toString());
+                                PLANDB plandb = new PLANDB(getActivity());
+                                plandb.insertPlan(str_task, planday, plancount, plantime);
                             }
                         });
                 AlertDialog ad = adb.create();
