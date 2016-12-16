@@ -5,18 +5,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by lsn94 on 2016-12-01.
+ * Created by lsn94 on 2016-12-16.
  */
 
-public class DBHelper extends SQLiteOpenHelper {
-
-    public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+public class PLANDBHelper extends SQLiteOpenHelper{
+    public PLANDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "create table tasktable(starttime text, endtime text, runtime integer, type text, walk text);";
+        String sql = "create table plantable(starttime text, endtime text, type text, planday integer,plancount integer, plantime integer);";
         sqLiteDatabase.execSQL(sql);
     }
 
@@ -26,5 +25,4 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql);
         onCreate(sqLiteDatabase);
     }
-
 }
