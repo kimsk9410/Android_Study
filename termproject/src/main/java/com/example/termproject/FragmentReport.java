@@ -27,12 +27,8 @@ public class FragmentReport extends Fragment {
         ArrayList<String> labels = new ArrayList<String>();
         ArrayList<Entry> entries = new ArrayList<Entry>();
 
-        labels.add("공부");
-        entries.add(new Entry(1,0));
-
-        labels.add("식사");
-        entries.add(new Entry(3,1));
-
+        TASKDB db = new TASKDB(getContext());
+        db.statsDB(entries, labels);
         PieDataSet dataset = new PieDataSet(entries,"");
         PieData data = new PieData(labels, dataset);
         pieChart.setData(data);

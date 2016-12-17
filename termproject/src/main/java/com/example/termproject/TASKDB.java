@@ -71,7 +71,7 @@ public class TASKDB {
                 tv_name.setText(c.getString(3));
                 tv_name.setTextSize(20);
                 tv_name.setPaintFlags(tv_name.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
-                tv_time.setText(c.getString(2));
+                tv_time.setText(c.getString(2)+"초");
                 ll.addView(tv_name);
                 ll.addView(tv_time);
                 tl.addView(ll);
@@ -108,49 +108,37 @@ public class TASKDB {
         }
     }
 
-    boolean isExist(double lati_in, double longi_in){
-        Cursor c = db.rawQuery("select * from gpstable;", null);
-        while(c.moveToNext()){
-            double lati = c.getDouble(1);
-            double longi = c.getDouble(2);
-            if(lati == lati_in && longi == longi_in){
-                return true;
-            }
-        }
-        return false;
-    }
-
     void statsDB(ArrayList<Entry> al_e, ArrayList<String> al_s){
-        Cursor c = db.rawQuery("select * from gpstable;", null);
+        Cursor c = db.rawQuery("select * from tasktable;", null);
         int type_num = 5;
         int[] count_arr = new int[type_num];
         while(c.moveToNext()){
-            String type = c.getString(4);
+            String type = c.getString(3);
             switch (type){
                 case "분류":
                     break;
-                case "학교":
+                case "걷기":
                     count_arr[0]++;
                     break;
-                case "식사":
+                case "공부":
                     count_arr[1]++;
                     break;
-                case "카페":
+                case "식사":
                     count_arr[2]++;
                     break;
-                case "취미":
+                case "운동":
                     count_arr[3]++;
                     break;
-                case "운동":
+                case "회의":
                     count_arr[4]++;
                     break;
             }
         }
-        al_s.add("학교");
+        al_s.add("걷기");
+        al_s.add("공부");
         al_s.add("식사");
-        al_s.add("카페");
-        al_s.add("취미");
         al_s.add("운동");
+        al_s.add("회의");
         for(int i = 0; i < type_num; i++){
             al_e.add(new Entry((float)count_arr[i],i));
         }

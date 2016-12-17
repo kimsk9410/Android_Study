@@ -116,7 +116,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                map:srcCompat="@drawable/walk"
+                map:srcCompat="@drawable/calorias"
                 android:id="@+id/imageView12"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
