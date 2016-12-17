@@ -3,6 +3,10 @@ package com.example.termproject;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.icu.text.DateFormat;
 import android.icu.text.DisplayContext;
 import android.icu.text.SimpleDateFormat;
@@ -41,7 +45,7 @@ import java.util.Date;
  * Created by lsn94 on 2016-11-26.
  */
 
-public class FragmentTask extends Fragment implements View.OnClickListener{
+public class FragmentTask extends Fragment implements View.OnClickListener, SensorEventListener{
 
     final int dip = TypedValue.COMPLEX_UNIT_DIP;
 
@@ -56,9 +60,25 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
     ArrayList<Button> al_btstart = new ArrayList<Button>();
     ArrayList<Chronometer> al_cm = new ArrayList<Chronometer>();
 
+    int accelXValue, accelYValue, accelZValue;
+    int count=0;
+    int dir_UP=0, dir_DOWN=0;
+    double acceleration;
+    SensorManager mSensorManager;
+    Sensor accSensor;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.task, container, false);
+
+        new TedPermission(getActivity())
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                .check();
+
+        mSensorManager = (SensorManager)v.getContext().getSystemService(Context.SENSOR_SERVICE);
+        accSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         bt_plan = (Button)v.findViewById(R.id.buttonPlan);
         bt_plan.setOnClickListener(this);
@@ -211,11 +231,6 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
             case R.id.start_walk:
                 int index = 0;
                 if(al_btstart.get(index).getText().equals("시작")) {
-                    new TedPermission(getActivity())
-                            .setPermissionListener(permissionlistener)
-                            .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
-                            .setPermissions(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                            .check();
 
                     long long_starttime = System.currentTimeMillis();
                     Date date_starttime = new Date(long_starttime);
@@ -238,6 +253,7 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                     gps.getGPSInfo();
                     start_lati = gps.lati;
                     start_longi = gps.longi;
+                    count = 0;
                 }
                 else if(al_btstart.get(index).getText().equals("대기")){
                     Toast.makeText(getActivity(), "다른 작업이 진행중입니다.", Toast.LENGTH_SHORT).show();
@@ -268,6 +284,8 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
 
                     GPSDB gpsdb = new GPSDB(getContext());
                     gpsdb.insertGPS(str_walkday, start_lati, start_longi, end_lati, end_longi);
+                    WALKDB walkdb = new WALKDB(getContext());
+                    walkdb.insertWalk(str_walkday, count);
                 }
                 break;
             case R.id.start_study:
@@ -446,6 +464,7 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
         }
 
     }
+
     PermissionListener permissionlistener = new PermissionListener() {
         @Override
         public void onPermissionGranted() {
@@ -457,4 +476,47 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
             Toast.makeText(getContext(), "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        Sensor sensor = event.sensor;
+
+        if(sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+            accelXValue = (int) event.values[0];
+            accelYValue = (int) event.values[1];
+            accelZValue = (int) event.values[2];
+
+            acceleration = Math.sqrt(accelXValue*accelXValue + accelYValue*accelYValue + accelZValue*accelZValue);
+        }
+
+        if(acceleration - 9.81 > 5){
+            dir_UP = 1;
+        }
+
+        if(dir_UP == 1 & 9.81 - acceleration > 5){
+            dir_DOWN = 1;
+        }
+
+        if(dir_DOWN == 1){
+            count++;
+
+            dir_UP = 0;
+            dir_DOWN = 0;
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    public void onResume(){
+        super.onResume();
+        mSensorManager.registerListener(this, accSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+
+    public void onPause(){
+        super.onPause();
+        mSensorManager.unregisterListener(this);
+    }
 }

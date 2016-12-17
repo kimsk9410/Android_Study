@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,7 +22,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -34,6 +39,7 @@ public class FragmentWalk extends Fragment implements View.OnClickListener, OnMa
     Button btn_date;
     DatePicker dp;
     String pick_date;
+    TextView tv_walk, tv_calroies;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -51,6 +57,9 @@ public class FragmentWalk extends Fragment implements View.OnClickListener, OnMa
         Date date_starttime = new Date(long_starttime);
         SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일");
         pick_date = sdf_starttime.format(date_starttime);
+
+        tv_walk = (TextView)v.findViewById(R.id.walktext);
+        tv_calroies = (TextView)v.findViewById(R.id.calorytext);
 
         return v;
     }
@@ -86,6 +95,8 @@ public class FragmentWalk extends Fragment implements View.OnClickListener, OnMa
                                 btn_date.setText(pick_date);
                                 GPSDB gpsdb = new GPSDB(getActivity());
                                 gpsdb.showMap(mMap, pick_date);
+                                WALKDB walkdb = new WALKDB(getContext());
+                                walkdb.showWalk(pick_date, tv_walk, tv_calroies);
 
                             }
                         });
@@ -106,4 +117,6 @@ public class FragmentWalk extends Fragment implements View.OnClickListener, OnMa
         mMap.addMarker(new MarkerOptions().position(cl).title("current location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cl,11));
     }
+
+
 }
