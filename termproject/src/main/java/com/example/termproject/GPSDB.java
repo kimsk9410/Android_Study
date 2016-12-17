@@ -53,7 +53,6 @@ public class GPSDB {
         int count = 0;
         gMap.clear();
         while(c.moveToNext()){
-            Log.e("Tag", "0:"+c.getString(0)+" / 1:"+c.getDouble(1)+" / 2:"+c.getDouble(2)+" / 3:"+c.getDouble(3)+" / 4:"+c.getDouble(4));
             if(str_date.equals(c.getString(0))){
                 LatLng start_ll = new LatLng(c.getDouble(1), c.getDouble(2));
                 LatLng end_ll = new LatLng(c.getDouble(3), c.getDouble(4));

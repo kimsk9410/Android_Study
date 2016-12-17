@@ -52,11 +52,15 @@ public class FragmentPlan extends Fragment implements View.OnClickListener{
                 tv_date.setBackgroundResource(R.drawable.roundborder_55555555);
                 tv_week.setBackgroundResource(R.drawable.roundborder_55555555_fill);
                 tv_month.setBackgroundResource(R.drawable.roundborder_55555555);
+                plandb = new PLANDB(getContext());
+                plandb.showPlan(plan_tl, 7);
                 break;
             case R.id.textViewmonth:
                 tv_date.setBackgroundResource(R.drawable.roundborder_55555555);
                 tv_week.setBackgroundResource(R.drawable.roundborder_55555555);
                 tv_month.setBackgroundResource(R.drawable.roundborder_55555555_fill);
+                plandb = new PLANDB(getContext());
+                plandb.showPlan(plan_tl, 30);
                 break;
         }
     }

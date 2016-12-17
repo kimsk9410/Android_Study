@@ -12,6 +12,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -45,21 +46,21 @@ public class PLANDB {
 
         long long_starttime = System.currentTimeMillis();
         Date date_starttime = new Date(long_starttime);
-        SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일00시00분00초");
+        SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
         starttime = sdf_starttime.format(date_starttime);
 
         if(planday == 1){
-            long long_endtime = System.currentTimeMillis() + 1000*3600*24 - 1;
+            long long_endtime = System.currentTimeMillis() + 1000*3600*24;
             Date date_endtime = new Date(long_endtime);
             SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
             endtime = sdf_endtime.format(date_endtime);
         }else if(planday == 7){
-            long long_endtime = System.currentTimeMillis() + 1000*3600*24*7 - 1;
+            long long_endtime = System.currentTimeMillis() + 1000*3600*24*7;
             Date date_endtime = new Date(long_endtime);
             SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
             endtime = sdf_endtime.format(date_endtime);
         }else{
-            long long_endtime = System.currentTimeMillis() + 1000*3600*24*30 - 1;
+            long long_endtime = System.currentTimeMillis() + 1000*3600*24*30;
             Date date_endtime = new Date(long_endtime);
             SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
             endtime = sdf_endtime.format(date_endtime);
@@ -83,11 +84,18 @@ public class PLANDB {
                 ll.setOrientation(LinearLayout.VERTICAL);
                 ll.setPadding(50,50,50,50);
                 ll.setBackgroundResource(R.drawable.roundborder_55555555);
-                tv_term.setText("기간~기간");
+
+                StringTokenizer tokens = new StringTokenizer(c.getString(0));
+                String starttime = tokens.nextToken("일");
+                tokens = new StringTokenizer(c.getString(1));
+                String endtime = tokens.nextToken("일");
+                tv_term.setText(starttime+"일 ~ "+endtime+"일");
                 tv_term.setTextSize(20);
                 tv_term.setPaintFlags(tv_term.getPaintFlags() | Paint.FAKE_BOLD_TEXT_FLAG);
                 if(c.getString(2).equals("걷기")) {
-                    tv_plan.setText(c.getString(2) + " : " + c.getInt(4) + "회" + c.getInt(5) + "걸음");
+                    tv_plan.setText(c.getString(2) + " : " + c.getInt(4) + "회 " + c.getInt(5) + "걸음");
+                    WALKDB walkdb = new WALKDB(mContext);
+                    walkdb.checkPlan(starttime, endtime, tv_plan);
                 }else{
                     tv_plan.setText(c.getString(2) + " : " + c.getInt(4) + "회" + c.getInt(5) + "시간");
                 }

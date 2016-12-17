@@ -236,7 +236,6 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_starttime = new Date(long_starttime);
                     SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_starttime = sdf_starttime.format(date_starttime);
-                    Log.d("시작시간",str_starttime);
 
                     al_btstart.get(index).setText("종료");
                     al_btstart.get(index).setTextColor(0xffff0000);
@@ -295,7 +294,6 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_starttime = new Date(long_starttime);
                     SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_starttime = sdf_starttime.format(date_starttime);
-                    Log.d("시작시간",str_starttime);
 
                     al_btstart.get(index).setText("종료");
                     al_btstart.get(index).setTextColor(0xffff0000);
@@ -316,12 +314,10 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_endtime = new Date(long_endtime);
                     SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_endtime = sdf_endtime.format(date_endtime);
-                    Log.d("종료시간",str_endtime);
 
                     al_cm.get(index).stop();
                     long long_runtime = SystemClock.elapsedRealtime() - al_cm.get(index).getBase();
                     int_runtime = (int)long_runtime/1000;
-                    Log.d("런타임", Integer.toString(int_runtime));
 
                     for(int i = 0; i < al_btstart.size(); i++){
                         al_btstart.get(i).setText("시작");
@@ -338,7 +334,6 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_starttime = new Date(long_starttime);
                     SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_starttime = sdf_starttime.format(date_starttime);
-                    Log.d("시작시간",str_starttime);
 
                     al_btstart.get(index).setText("종료");
                     al_btstart.get(index).setTextColor(0xffff0000);
@@ -359,12 +354,10 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_endtime = new Date(long_endtime);
                     SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_endtime = sdf_endtime.format(date_endtime);
-                    Log.d("종료시간",str_endtime);
 
                     al_cm.get(index).stop();
                     long long_runtime = SystemClock.elapsedRealtime() - al_cm.get(index).getBase();
                     int_runtime = (int)long_runtime/1000;
-                    Log.d("런타임", Integer.toString(int_runtime));
 
                     for(int i = 0; i < al_btstart.size(); i++){
                         al_btstart.get(i).setText("시작");
@@ -381,7 +374,6 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_starttime = new Date(long_starttime);
                     SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_starttime = sdf_starttime.format(date_starttime);
-                    Log.d("시작시간",str_starttime);
 
                     al_btstart.get(index).setText("종료");
                     al_btstart.get(index).setTextColor(0xffff0000);
@@ -402,12 +394,10 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_endtime = new Date(long_endtime);
                     SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_endtime = sdf_endtime.format(date_endtime);
-                    Log.d("종료시간",str_endtime);
 
                     al_cm.get(index).stop();
                     long long_runtime = SystemClock.elapsedRealtime() - al_cm.get(index).getBase();
                     int_runtime = (int)long_runtime/1000;
-                    Log.d("런타임", Integer.toString(int_runtime));
 
                     for(int i = 0; i < al_btstart.size(); i++){
                         al_btstart.get(i).setText("시작");
@@ -424,7 +414,6 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_starttime = new Date(long_starttime);
                     SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_starttime = sdf_starttime.format(date_starttime);
-                    Log.d("시작시간",str_starttime);
 
                     al_btstart.get(index).setText("종료");
                     al_btstart.get(index).setTextColor(0xffff0000);
@@ -445,12 +434,10 @@ public class FragmentTask extends Fragment implements View.OnClickListener, Sens
                     Date date_endtime = new Date(long_endtime);
                     SimpleDateFormat sdf_endtime = new SimpleDateFormat("yyyy년MM월dd일HH시mm분ss초");
                     str_endtime = sdf_endtime.format(date_endtime);
-                    Log.d("종료시간",str_endtime);
 
                     al_cm.get(index).stop();
                     long long_runtime = SystemClock.elapsedRealtime() - al_cm.get(index).getBase();
                     int_runtime = (int)long_runtime/1000;
-                    Log.d("런타임", Integer.toString(int_runtime));
 
                     for(int i = 0; i < al_btstart.size(); i++){
                         al_btstart.get(i).setText("시작");
