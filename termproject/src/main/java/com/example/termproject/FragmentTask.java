@@ -235,6 +235,7 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                     }
 
                     UseGPS gps = new UseGPS(getContext());
+                    gps.getGPSInfo();
                     start_lati = gps.lati;
                     start_longi = gps.longi;
                 }
@@ -259,6 +260,7 @@ public class FragmentTask extends Fragment implements View.OnClickListener{
                     taskdb.insertTask(task_arr[index], str_starttime, str_endtime, int_runtime);
 
                     UseGPS gps = new UseGPS(getContext());
+                    gps.getGPSInfo();
                     end_lati = gps.lati;
                     end_longi = gps.longi;
                     SimpleDateFormat sdf_walkday = new SimpleDateFormat("yyyy년MM월dd일");

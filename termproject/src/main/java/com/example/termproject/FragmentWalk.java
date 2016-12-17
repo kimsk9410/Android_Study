@@ -14,7 +14,10 @@ import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -27,6 +30,7 @@ import java.util.Date;
 public class FragmentWalk extends Fragment implements View.OnClickListener, OnMapReadyCallback{
 
     private GoogleMap mMap;
+    private MapView mapView;
     Button btn_date;
     DatePicker dp;
     String pick_date;
@@ -35,12 +39,17 @@ public class FragmentWalk extends Fragment implements View.OnClickListener, OnMa
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.walk, container, false);
 
+        mapView = (MapView)v.findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+        mapView.getMapAsync(this);
+
         btn_date = (Button)v.findViewById(R.id.walkbuttondate);
         btn_date.setOnClickListener(this);
 
         long long_starttime = System.currentTimeMillis();
         Date date_starttime = new Date(long_starttime);
-        SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd");
+        SimpleDateFormat sdf_starttime = new SimpleDateFormat("yyyy년MM월dd일");
         pick_date = sdf_starttime.format(date_starttime);
 
         return v;

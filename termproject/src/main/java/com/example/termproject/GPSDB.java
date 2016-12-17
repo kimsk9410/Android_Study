@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -11,6 +12,10 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.StringTokenizer;
 
@@ -44,11 +49,28 @@ public class GPSDB {
     }
 
     void showMap(GoogleMap gMap, String str_date){
-        Cursor c = db.rawQuery("select * from memotable;", null);
+        Cursor c = db.rawQuery("select * from gpstable;", null);
+        int count = 0;
+        gMap.clear();
         while(c.moveToNext()){
-
-
+            Log.e("Tag", "0:"+c.getString(0)+" / 1:"+c.getDouble(1)+" / 2:"+c.getDouble(2)+" / 3:"+c.getDouble(3)+" / 4:"+c.getDouble(4));
+            if(str_date.equals(c.getString(0))){
+                LatLng start_ll = new LatLng(c.getDouble(1), c.getDouble(2));
+                LatLng end_ll = new LatLng(c.getDouble(3), c.getDouble(4));
+                gMap.addMarker(new MarkerOptions().position(start_ll).title(++count+"번 시작점"));
+                gMap.addMarker(new MarkerOptions().position(end_ll).title(count+"번 도착점"));
+                PolylineOptions polyOp = new PolylineOptions()
+                        .color(Color.RED)
+                        .width(5)
+                        .add(start_ll)
+                        .add(end_ll);
+                Polyline polyline = gMap.addPolyline(polyOp);
+            }
         }
+    }
+
+    void walkAndCalories(){
+
     }
 
 }
